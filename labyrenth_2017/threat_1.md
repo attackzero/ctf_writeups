@@ -5,7 +5,7 @@ We are given the following hint:
 > Just because it's protocol compliant doesn't mean it is a good idea.
 
 There looks to be something unusual in each of the queries:
-![Interesting Strings in DNS](https://github.com/attackzero/ctf_writeups/labyrenth2017/images/threat1_packets.png)
+![Interesting Strings in DNS](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/threat1_packets.png)
 
 We can write a script to concatenate these interesting strings using scapy to extract the raw payloads from
 each packet.
@@ -13,7 +13,7 @@ each packet.
 All of the interesting strings fall between character c0 plus one character and 03 (End of text).  We
 can use a regular expression to capture the string between those bounds.
 
-The script is available [here](https://github.com/attackzero/ctf_writeups/labyrenth2017/code/threat1.py)
+The script is available [here](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/code/threat1.py)
 
 ```python
 import scapy.all
