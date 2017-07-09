@@ -5,8 +5,10 @@ Let’s take a look at the JPEGs. Here is config.jpg
 ![Config.jpg in a hex editor](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_config.jpg)
 and here is notdroids.jpg:
 ![notdroids.jpg in a hex editor](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_notdroids.jpg)
+
 These do not look like normal JPEGs to me. They look encrypted, and the binary probably decrypts them and does something with them. Maybe there are clues in the binary:
 ![MyFirstMalware.exe in a hex editor](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_exe.jpg)
+
 The header is unencrypted (which makes sense, otherwise Windows would not know what to do with it). However, most of the binary is encrypted. There is probably stub code that decrypts it in memory. Right now, I am more interested in how it works so I can do further analysis. The best way to do this is to run it. You do not want to run unknown software on your main computer, so I have spun up a Windows 7 VM. If the malware destroys the VM, I can blow it away and start with a clean VM.
 
 There are a number of tools to do dynamic analysis. We are not going to talk about all of them in this post, but I want to show you my thought process so that you get an idea of how to approach these puzzles (CTF puzzles or real life puzzles). Tools come and go, and every tool has its limitations, so it is best to have a number of tools in your toolbox because you never know what you will need.
@@ -24,6 +26,7 @@ The second tool is procmon:
 You can see svchost is interacting with the registry quite a bit. You have to be careful with procmon. If your system is busy, you can run out of memory because all events are stored in memory. Also, if your system is really busy, then it will be hard to isolate the events you care about. To help solve both problems, we will employ filters.
 
 Under the Filter menu, there is a Filter option. You can also hit the funnel icon in the toolbar:
+
 ![Procmon Filters](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_procmon_filter.png)
 
 We are going to be examining MyFirstMalware.exe, so we will include the process name “MyFirstMalware.exe” You can filter on all kinds of properties like PID, parent PID, and path. Hit Add then hit OK.
@@ -37,26 +40,38 @@ Lots going on there. Here is what it looks like in Process Explorer:
 ![MyFirstMalware.exe in Process Explorer](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_procexp_exe.png)
 
 It is PID 3800 in this case. We will wait to see if it finishes. In the mean time, we can look at the various properties in Process Explorer to see if we can glean anything additional. There are all kinds of tabs to check out. The TCP/IP tab will show open network connection, and the Strings tab shows the strings in binary both on disk and in memory. With malware, what is on disk may not be what is in memory. Malware typically uses techniques like packing, encryption, and obfuscation to hide from people who want to see what their code is doing. Here is a look at the strings in memory:
+
 ![Strings in Process Explorer](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_procexp_strings.png)
+
 I will save them to a file in case they come in handy later. There was nothing in the TCP/IP tab, so this specific process does not use the network, but it may spawn something that does.
 Going back to Process Monitor, there is something interesting:
+
 ![MyFirstMalware.exe looking for notdroids.jpg](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_procmon_exe2.png)
+
 The process tries to open the notdroids.jpg file on the root of the C:\ drive. When it does not find it, it quits. So, maybe we should copy notdroids.jpg to the root of our C:\ drive and see if the malware behaves any differently.
+
 ![notdroids.jpg is there now](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_procmon_exe3.png)
+
 We can see that the process was able to open notdroids.jog and a lot more happened this time. We can see some encryption libraries were loaded (cryptsp.dll and rsaenh.dll). Cryptsp is the [Cryptographic Service Provider API](https://msdn.microsoft.com/en-us/library/windows/desktop/bb931357(v=vs.85).aspx), and rsaenh is the [Enhanced Cryptographic Provider (PDF)](http://csrc.nist.gov/groups/STM/cmvp/documents/140-1/140sp/140sp1330.pdf).
 
 That follows what we hypothesized before about MyFirstMalware utilizing encryption. Scrolling further down, we can see that the contents of notdroids.jpg are read into memory:
+
 ![notdroids.jpg in memory](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_notdroids_memory.png)
+
 Next we can see that ping.exe is launched:
+
 ![ping.exe](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_ping.png)
 
 Further down, we can see that MyFirstMalware does a directory listing of C:\Windows\SysWOW64\:
+
 ![Dir listing](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_dirlist.png)
 
 Then ping.exe is closed:
+
 ![ping.exe done](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_ping_closed.png)
 
 The next event of note is that the process exits:
+
 ![Malware is all done](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_exe_closed.png)
 
 The next step would be to fire up Wireshark and see if we can see ICMP traffic since that is what ping.exe would normally generate.
