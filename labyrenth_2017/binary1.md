@@ -86,6 +86,7 @@ Unfortunately, some malware can see that a debugger has attached to it and will 
 This looks really intimidating when you first open it. I am no OllyDbg expert, but that is why I do challenges like these. I want to get exposure to different tools. For now, we are going to do a relatively simple task. We are going to see if we can see how the ping.exe is created. Maybe there are some clues as to why we are not seeing packets on the wire.
 
 To get started, we want to set a breakpoint (pause execution) when the code calls *CreateProcess* from the Windows API. We saw in Process Monitor that ping.exe was created, and it was likely done using that call. In order to do that in Olly, hit Ctrl-G (Follow Expression):
+
 ![Following an expression](https://github.com/AttackZero/ctf_writeups/blob/master/labyrenth_2017/images/binary_1_olly_follow_exp.png)
 
 When we start typing *CreateProcess*, we can see a few options. We will choose *kernel32.CreateProcessW*. *CreateProcessW* takes a Unicode string as opposed to *CreateProcessA* which takes an ANSI string. I am going to guess that this code was compiled with Unicode support. If not, we can always go back and choose to follow *CreateProcessA* (or we can follow both). Click on *kernel32.CreateProcessW* and then click Follow Label (the button changes). It will jump to the first call of *CreateProcessW*. Press F2 to create a breakpoint there.
@@ -205,10 +206,12 @@ And that completes this challenge. :)
 This challenge was really engaging. This was my second time using Olly, so even though I had to rely on Google, I learned a lot.
 
 # Links to Tools
-[Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062.aspx)
-[HxD](https://mh-nexus.de/en/hxd/)
-[Wireshark](https://www.wireshark.org/)
+
+* [Sysinternals Suite](https://technet.microsoft.com/en-us/sysinternals/bb842062.aspx)
+* [HxD](https://mh-nexus.de/en/hxd/)
+* [Wireshark](https://www.wireshark.org/)
 
 # Further Reading
-[Process Hollowing Meets Cuckoo Sandbox](http://journeyintoir.blogspot.com/2015/02/process-hollowing-meets-cuckoo-sandbox.html)
-[Following Process Hollowing in OllyDbg](http://blog.airbuscybersecurity.com/post/2016/06/Following-Process-Hollowing-in-OllyDbg)
+
+* [Process Hollowing Meets Cuckoo Sandbox](http://journeyintoir.blogspot.com/2015/02/process-hollowing-meets-cuckoo-sandbox.html)
+* [Following Process Hollowing in OllyDbg](http://blog.airbuscybersecurity.com/post/2016/06/Following-Process-Hollowing-in-OllyDbg)
