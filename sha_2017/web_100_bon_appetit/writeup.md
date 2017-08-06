@@ -24,7 +24,7 @@ Unfortunately, for us it is not that simple.  However, there is another trick we
 PHP filters allow the application to validate or sanitize data before using it.  We can specify them using ```php://filter```.  It only has one required argument (resource).  If we do not specify any additional actions, the file will be read in.  We can test to see if the server is vulnerable with something like this:
 ```http://bonappetit.stillhackinganyway.nl/?page=php://filter/resource=/etc/passwd```
 
-![PHP Filter Test](https://github.com/AttackZero/ctf_writeups/blob/master/sha_2017/web_100_bon_appetit/images/resource_etc_passwd.png)
+![PHP Filter Test](https://github.com/AttackZero/ctf_writeups/blob/master/sha_2017/web_100_bon_appetit/images/resource_etc_password.png)
 
 ## Leveraging Filters
 Awesome.  Now we need to figure out how to leverage this.  I looked at the headers that server provided by using the Developer Tools in Firefox, and the header had Apache in it.  That means the server probably makes use of .htaccess files which allows the administrator of an Apache server to set access controls on files.  Let's see if we can find anything interesting in the .htaccess file:
