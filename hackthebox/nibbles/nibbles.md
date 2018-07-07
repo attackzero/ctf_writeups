@@ -189,8 +189,9 @@ This was a fun challenge because we got to leverage multiple vulnerabilities to 
 [3]: https://pen-testing.sans.org/blog/2013/05/06/netcat-without-e-no-problem/
 [4]: https://www.tecmint.com/linux-server-health-monitoring-script/
 [5]: https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
-[1 Nibbleblog Github Page](https://github.com/dignajar/nibbleblog)
-[2 Nibbleblog 4.0.3 Code Execution](https://curesec.com/blog/article/blog/NibbleBlog-403-Code-Execution-47.html)
-[3 Netcat without -e? No problem](https://pen-testing.sans.org/blog/2013/05/06/netcat-without-e-no-problem/)
-[4 Linux Server Health Monitoring Script](https://www.tecmint.com/linux-server-health-monitoring-script/)
-[5 Upgrading Simple Shells to Fully Interactive TTYs](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/)
+
+  * [1 Nibbleblog Github Page](https://github.com/dignajar/nibbleblog)
+  * [2 Nibbleblog 4.0.3 Code Execution](https://curesec.com/blog/article/blog/NibbleBlog-403-Code-Execution-47.html)
+  * [3 Netcat without -e? No problem](https://pen-testing.sans.org/blog/2013/05/06/netcat-without-e-no-problem/)
+  * [4 Linux Server Health Monitoring Script](https://www.tecmint.com/linux-server-health-monitoring-script/)
+  * [5 Upgrading Simple Shells to Fully Interactive TTYs](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/)
