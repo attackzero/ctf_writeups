@@ -9,7 +9,7 @@ on the target.  -Pn tells nmap not to ping the target first.
 nmap -A -Pn 10.10.10.75
 ```
 
->>>
+```
 Starting Nmap 7.70 ( https://nmap.org ) at 2018-06-29 22:36 EDT
 Nmap scan report for 10.10.10.75
 Host is up (0.12s latency).
@@ -46,32 +46,32 @@ HOP RTT       ADDRESS
 
 OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 25.65 seconds
->>>
+```
 
 It looks like there is a web page hosted on the target.  Let's take a look at it:
 
-![Main Page](screenshots/1_main_page.png)
+![Main Page](screenshots/1_main_page.PNG)
 
 This is not the most robust site in the world.  Sometimes, developers leave comments in the source code of a web page that may reveal useful information.  Let's take a look:
 
-![Main Page Source](screenshots/2_main_page_source.png)
+![Main Page Source](screenshots/2_main_page_source.PNG)
 
 The comment says there is nothing interesting in the nibbleblog directory.  Let's see about that:
 
-![Nibbleblog Main Page](screenshots/3_nibbleblog_main.png)
+![Nibbleblog Main Page](screenshots/3_nibbleblog_main.PNG)
 
 When I first saw the page, I started clicking links.  On some pages, I found some pages that could have been vulnerable
 to SQL injection.  I tried a few things, but got nowhere.  I decided to try to find out more about nibbleblog.
 Googling for nibbleblog leads us to the project's page on GitHub [1].
 This allows us to take a look at the structure of the application.  The admin page is at /nibbleblog/admin.php:
 
-![Nibbleblog Admin Page](screenshots/4_admin_main.png)
+![Nibbleblog Admin Page](screenshots/4_admin_main.PNG)
 
 I tried SQL injection on the log in, and that did not work.  On a whim, I tried to guess very simple credentials.
 Since the name of the challenge is nibbles, I guessed that was either a password or user name.  After a few guesses,
 I found that the admin user is ```admin``` and the password is ```nibbles```:
 
-![Logged in as admin](screenshots/5_admin_logged_in.png)
+![Logged in as admin](screenshots/5_admin_logged_in.PNG)
 
 I poked around the admin interface a little bit to see if there was anything I could use to gain remote code execution.  I did not
 find anything immediately, so I started Googling.  After a little bit, I ran across this page which describes a remote code execution
@@ -106,15 +106,15 @@ The second command spawns a shell and redirects standard input (stream 0) to our
 redirected to our named pipe.  Normally, it would go to the screen, but since we do not have a virtual terminal on the machine, we need to redirect it.  Stream 1 is standard output.
 
 Let's upload our shell:
-![Uploading shell](screenshots/6_upload_shell.png)
+![Uploading shell](screenshots/6_upload_shell.PNG)
 
 We get some warnings, but we can ignore those.  The file will be available in nibbleblog/content/private/plugins/my_image/image.php
 
-![Warnings from shell upload](screenshots/7_upload_shell_warnings.png)
+![Warnings from shell upload](screenshots/7_upload_shell_warnings.PNG)
 
 Let's surf to the page at http://10.10.10.75/nibbleblog/content/private/plugins/my_image/image.php to the page and look at our listener:
 
-![Successful Shell](screenshots/8_shell_succeeded.png)
+![Successful Shell](screenshots/8_shell_succeeded.PNG)
 
 Looks like we got a connection.  Awesome!  We are not going to get a prompt, so we can start typing commands.  Let's see what user we are, and see if that user has a home directory:
 
@@ -127,21 +127,21 @@ We are not done yet though.  We still have to get the root flag.  There is a zip
 ```bash
 unzip -l personal.zip
 ```
-![Contents of personal.zip](screenshots/10_unzip_list.png)
+![Contents of personal.zip](screenshots/10_unzip_list.PNG)
 
 We will need to extract monitor.sh to look at it further:
 ```bash
-![Extracting personal.zip](screenshots/11_unzip_files.png)
+![Extracting personal.zip](screenshots/11_unzip_files.PNG)
 ```
 
 This is a snippet, but the full script is available from tecmint.com [4].
-![Snippet of monitor.sh](screenshots/12_head_monitor.sh.png)
+![Snippet of monitor.sh](screenshots/12_head_monitor.sh.PNG)
 
 This script does not appear to give us root by itself.  Sometimes, you can escalate privileges by leveraging a misconfiguration on the system.  One thing that may be misconfigured is permissions for the sudo command.  Sudo allows users to run commands as other users (typically root) based on rules defined in the /etc/sudoers file.  Let's see if nibbler can run any commands as sudo:
 ```bash
 sudo -l
 ```
-[!Nibbler sudo commands](screenshots/13_sudo_list.png)
+[!Nibbler sudo commands](screenshots/13_sudo_list.PNG)
 
 This shows us all of the commands that nibbler is able to run using sudo and if he needs a password to do it. The interesting rule in here is
 ```
@@ -150,27 +150,27 @@ This shows us all of the commands that nibbler is able to run using sudo and if 
 This line says that nibbler can run /home/nibber/personal/stuff/monitor.sh as root without a password.  If we have control over the file, we can put whatever we want in it, and those commands would be executed as root.
 Let's verify the permissions:
 
-![Permissions on monitor.sh](screenshots/14_monitor_permissions.png)
+![Permissions on monitor.sh](screenshots/14_monitor_permissions.PNG)
 
 We have write access to monitor.sh, so let's replace it with a one-liner that will give us a shell:
 ```bash
 echo "python3 -c 'import pty; pty.spawn(\"/bin/bash\")'" > /home/nibbler/personal/stuff/monitor.sh
 ```
 This one line of Python imports the pty library and spawns a psuedoterminal (pty) in which we will run bash.  Psuedoterminals allow us to work in a full interactive terminal which allows us to do things like tab-completion, up arrow to get history, use certain applications that need a terminal (like ssh, vim).  This is a great site to read more if you are interested [5].  The command replaces the contents of /home/nibbler/personal/stuff/monitor.sh with our one line of Python:
-![New monitor.sh](screenshots/15_replace_monitor.png)
+![New monitor.sh](screenshots/15_replace_monitor.PNG)
 
 Let's see if it works:
 ```bash
 sudo /home/nibber/personal/stuff/monitor.sh
 ```
 No errors, so that is good.  Let's verify we are root:
-![We have root](screenshots/16_root_permissions.png)
+![We have root](screenshots/16_root_permissions.PNG)
 
 Now we need to look for the flag.  Usually it is somewhere in root's home directory:
-![Looking for the flag](screenshots/17_root_dir.png)
+![Looking for the flag](screenshots/17_root_dir.PNG)
 
 Looks like we found it (root.txt):
-![Found the root flag](screenshots/18_root_flag.png)
+![Found the root flag](screenshots/18_root_flag.PNG)
 ```b6d745c0dfb6457c55591efc898ef88c```
 
 ## Conclusion
