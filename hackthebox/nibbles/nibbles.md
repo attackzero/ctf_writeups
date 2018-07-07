@@ -177,6 +177,7 @@ Looks like we found it (root.txt):
 
 ## Conclusion
 This was a fun challenge because we got to leverage multiple vulnerabilities to reach our ultimate goal.  There were multiple issues here which allowed us to be successful:
+
   * Comments in HTML source that revealed areas of the site that the administrator did not intend for the public to visit:  When publishing anything to a website, internally within an organization or externally to the Internet, it is important to make sure that anything you do not want others to see is left around.  This includes directory listings left open or comments that might reveal information.
   * Use of weak credentials. Easily guessed credentials are not much of a barrier for an attacker.  Use strong passwords, especially to protect administrative interfaces.
   * Keep software up to date.  This vulnerability was fixed in a newer version of Nibbleblog.
@@ -188,3 +189,8 @@ This was a fun challenge because we got to leverage multiple vulnerabilities to 
 [3]: https://pen-testing.sans.org/blog/2013/05/06/netcat-without-e-no-problem/
 [4]: https://www.tecmint.com/linux-server-health-monitoring-script/
 [5]: https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
+[1 Nibbleblog Github Page](https://github.com/dignajar/nibbleblog)
+[2 Nibbleblog 4.0.3 Code Execution](https://curesec.com/blog/article/blog/NibbleBlog-403-Code-Execution-47.html)
+[3 Netcat without -e? No problem](https://pen-testing.sans.org/blog/2013/05/06/netcat-without-e-no-problem/)
+[4 Linux Server Health Monitoring Script](https://www.tecmint.com/linux-server-health-monitoring-script/)
+[5 Upgrading Simple Shells to Fully Interactive TTYs](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/)
