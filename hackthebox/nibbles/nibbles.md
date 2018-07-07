@@ -177,10 +177,10 @@ Looks like we found it (root.txt):
 
 ## Conclusion
 This was a fun challenge because we got to leverage multiple vulnerabilities to reach our ultimate goal.  There were multiple issues here which allowed us to be successful:
-	* Comments in HTML source that revealed areas of the site that the administrator did not intend for the public to visit:  When publishing anything to a website, internally within an organization or externally to the Internet, it is important to make sure that anything you do not want others to see is left around.  This includes directory listings left open or comments that might reveal information.
-	* Use of weak credentials. Easily guessed credentials are not much of a barrier for an attacker.  Use strong passwords, especially to protect administrative interfaces.
-	* Keep software up to date.  This vulnerability was fixed in a newer version of Nibbleblog.
-	* Be careful about how root or Administrator permissions are delegated on your systems.  It is not a good idea to allow anything that a user can modify to run with elevated privileges.
+  * Comments in HTML source that revealed areas of the site that the administrator did not intend for the public to visit:  When publishing anything to a website, internally within an organization or externally to the Internet, it is important to make sure that anything you do not want others to see is left around.  This includes directory listings left open or comments that might reveal information.
+  * Use of weak credentials. Easily guessed credentials are not much of a barrier for an attacker.  Use strong passwords, especially to protect administrative interfaces.
+  * Keep software up to date.  This vulnerability was fixed in a newer version of Nibbleblog.
+  * Be careful about how root or Administrator permissions are delegated on your systems.  It is not a good idea to allow anything that a user can modify to run with elevated privileges.
 
 ## References
 [1]: https://github.com/dignajar/nibbleblog "Nibbleblog Github Page"
