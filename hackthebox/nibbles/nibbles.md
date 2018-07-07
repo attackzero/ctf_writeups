@@ -131,8 +131,9 @@ unzip -l personal.zip
 
 We will need to extract monitor.sh to look at it further:
 ```bash
-![Extracting personal.zip](screenshots/11_unzip_files.PNG)
+unzip personal.zip
 ```
+![Extracting personal.zip](screenshots/11_unzip_files.PNG)
 
 This is a snippet, but the full script is available from tecmint.com [4].
 ![Snippet of monitor.sh](screenshots/12_head_monitor.sh.PNG)
