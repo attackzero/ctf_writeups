@@ -62,7 +62,7 @@ The comment says there is nothing interesting in the nibbleblog directory.  Let'
 
 When I first saw the page, I started clicking links.  On some pages, I found some pages that could have been vulnerable
 to SQL injection.  I tried a few things, but got nowhere.  I decided to try to find out more about nibbleblog.
-Googling for nibbleblog leads us to the project's page on GitHub [1].
+Googling for nibbleblog leads us to the project's page on GitHub <sup>[1]</sup>.
 This allows us to take a look at the structure of the application.  The admin page is at /nibbleblog/admin.php:
 
 ![Nibbleblog Admin Page](screenshots/4_admin_main.PNG)
@@ -75,7 +75,7 @@ I found that the admin user is ```admin``` and the password is ```nibbles```:
 
 I poked around the admin interface a little bit to see if there was anything I could use to gain remote code execution.  I did not
 find anything immediately, so I started Googling.  After a little bit, I ran across this page which describes a remote code execution
-vulnerability in Nibbleblog if you have admin credentials [2].  It was worth a shot.  The vulnerability is that the image upload functionality does not check that the files you are uploading are
+vulnerability in Nibbleblog if you have admin credentials <sup>[2]</sup>.  It was worth a shot.  The vulnerability is that the image upload functionality does not check that the files you are uploading are
 really images, so you could upload whatever you want.
 
 I wrote a quick script that will spawn a reverse shell that will call me back:
@@ -95,7 +95,7 @@ nc -vlp 43043
 
 In theory, when you upload the page and access it, it will execute this code and call back.
 
-Let's take a a closer look at this code, which I got the idea for from here [3]:
+Let's take a a closer look at this code, which I got the idea for from here <sup>[3]</sup>:
 
 ```mknod /tmp/p p``` makes a named pipe (the p at the end of the command) in /tmp/p.  Named pipes allow for interprocess communication.  In this case, we are going
 to use this pipe to allow netcat to communicate since I am not sure if the version of netcat on target (if it exists) supports the reverse shell option (-e).
@@ -136,7 +136,7 @@ head -n 50 /home/nibbler/personal/stuff/monitor.sh
 ```
 ![Extracting personal.zip](screenshots/11_unzip_files.PNG)
 
-This is a snippet, but the full script is available from tecmint.com [4].
+This is a snippet, but the full script is available from tecmint.com <sup>[4]</sup>.
 ![Snippet of monitor.sh](screenshots/12_head_monitor.sh.PNG)
 
 This script does not appear to give us root by itself.  Sometimes, you can escalate privileges by leveraging a misconfiguration on the system.  One thing that may be misconfigured is permissions for the sudo command.  Sudo allows users to run commands as other users (typically root) based on rules defined in the /etc/sudoers file.  Let's see if nibbler can run any commands as sudo:
@@ -158,7 +158,7 @@ We have write access to monitor.sh, so let's replace it with a one-liner that wi
 ```bash
 echo "python3 -c 'import pty; pty.spawn(\"/bin/bash\")'" > /home/nibbler/personal/stuff/monitor.sh
 ```
-This one line of Python imports the pty library and spawns a psuedoterminal (pty) in which we will run bash.  Psuedoterminals allow us to work in a full interactive terminal which allows us to do things like tab-completion, up arrow to get history, use certain applications that need a terminal (like ssh, vim).  This is a great site to read more if you are interested [5].  The command replaces the contents of /home/nibbler/personal/stuff/monitor.sh with our one line of Python:
+This one line of Python imports the pty library and spawns a psuedoterminal (pty) in which we will run bash.  Psuedoterminals allow us to work in a full interactive terminal which allows us to do things like tab-completion, up arrow to get history, use certain applications that need a terminal (like ssh, vim).  This is a great site to read more if you are interested <sup>[5]</sup>.  The command replaces the contents of /home/nibbler/personal/stuff/monitor.sh with our one line of Python:
 ![New monitor.sh](screenshots/15_replace_monitor.PNG)
 
 Let's see if it works:
@@ -190,8 +190,8 @@ This was a fun challenge because we got to leverage multiple vulnerabilities to 
 [4]: https://www.tecmint.com/linux-server-health-monitoring-script/
 [5]: https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/
 
-  * [1 Nibbleblog Github Page](https://github.com/dignajar/nibbleblog)
-  * [2 Nibbleblog 4.0.3 Code Execution](https://curesec.com/blog/article/blog/NibbleBlog-403-Code-Execution-47.html)
-  * [3 Netcat without -e? No problem](https://pen-testing.sans.org/blog/2013/05/06/netcat-without-e-no-problem/)
-  * [4 Linux Server Health Monitoring Script](https://www.tecmint.com/linux-server-health-monitoring-script/)
-  * [5 Upgrading Simple Shells to Fully Interactive TTYs](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/)
+  * [<sup>1</sup> Nibbleblog Github Page](https://github.com/dignajar/nibbleblog)
+  * [<sup>2</sup> Nibbleblog 4.0.3 Code Execution](https://curesec.com/blog/article/blog/NibbleBlog-403-Code-Execution-47.html)
+  * [<sup>3</sup> Netcat without -e? No problem](https://pen-testing.sans.org/blog/2013/05/06/netcat-without-e-no-problem/)
+  * [<sup>4</sup> Linux Server Health Monitoring Script](https://www.tecmint.com/linux-server-health-monitoring-script/)
+  * [<sup>5</sup> Upgrading Simple Shells to Fully Interactive TTYs](https://blog.ropnop.com/upgrading-simple-shells-to-fully-interactive-ttys/)
