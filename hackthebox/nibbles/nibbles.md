@@ -118,7 +118,7 @@ Let's surf to the page at http://10.10.10.75/nibbleblog/content/private/plugins/
 
 Looks like we got a connection.  Awesome!  We are not going to get a prompt, so we can start typing commands.  Let's see what user we are, and see if that user has a home directory:
 
-![User Flag](screenshots/9_user_flag.txt)
+![User Flag](screenshots/9_user_flag.PNG)
 
 What is user.txt?  Looks like the user flag.  ```b02ff32bb332deba49eeaed21152c8d8```
 
