@@ -132,6 +132,7 @@ unzip -l personal.zip
 We will need to extract monitor.sh to look at it further:
 ```bash
 unzip personal.zip
+head -n 50 /home/nibbler/personal/stuff/monitor.sh
 ```
 ![Extracting personal.zip](screenshots/11_unzip_files.PNG)
 
@@ -142,7 +143,7 @@ This script does not appear to give us root by itself.  Sometimes, you can escal
 ```bash
 sudo -l
 ```
-[!Nibbler sudo commands](screenshots/13_sudo_list.PNG)
+![Nibbler sudo commands](screenshots/13_sudo_list.PNG)
 
 This shows us all of the commands that nibbler is able to run using sudo and if he needs a password to do it. The interesting rule in here is
 ```
