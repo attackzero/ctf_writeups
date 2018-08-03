@@ -231,4 +231,4 @@ This was a fun challenge because it gave us first hand experience with HeartBlee
 ## References
 [1]: http://heartbleed.com/ "The HeartBleed Bug"
 
-    * [<sup>1</sup> The HeartBleed Bug](http://heartbleed.com/)
+  * [<sup>1</sup> The HeartBleed Bug](http://heartbleed.com/)
