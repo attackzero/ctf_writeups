@@ -246,7 +246,7 @@ The password does not look hashed, so it could be richard's user password which 
 ```bash
 ssh richard@10.10.10.64
 ```
-![richard SSH](screenshots/13_richard_ssh.PNG)
+![richard SSH](screenshots/13_ssh_richard.PNG)
 Looks like it worked.  The user flag is in his home directory under user.txt.
 
 ## Owning the Box and the Root Flag
@@ -288,6 +288,7 @@ Let's try it out:
 It worked! And that wraps up another box.
 
 ## References
+
 [1]: https://www.scmagazine.com/apache-struts-vulnerability-likely-behind-equifax-breach-congress-launches-probes/article/687955/ "Apache Struts vulnerability likely behind Equifax breach, Congress launches probes"
 [2]: https://nvd.nist.gov/vuln/detail/CVE-2017-5638 "CVE-2017-5638 Detail (National Vulnerability Database)"
 [3]: https://nvd.nist.gov/vuln/detail/CVE-2017-9805 "CVE-2017-9805 Detail (National Vulnerability Database)"
@@ -299,3 +300,4 @@ It worked! And that wraps up another box.
     * [<sup>3</sup> CVE-2017-9805 Detail (National Vulnerability Database)](https://nvd.nist.gov/vuln/detail/CVE-2017-9805)
     * [<sup>4</sup> http-vuln-cve2017-5638 NSE Script](https://nmap.org/nsedoc/scripts/http-vuln-cve2017-5638.html)
     * [<sup>5</sup> struts-pwn](https://github.com/mazen160/struts-pwn)
+
