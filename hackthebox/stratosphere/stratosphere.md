@@ -283,6 +283,7 @@ sudo /usr/bin/python2 /home/richard/test.py
 ```
 
 Let's try it out:
+
 ![root flag](screenshots/17_root_flag.png)
 
 It worked! And that wraps up another box.
@@ -295,9 +296,9 @@ It worked! And that wraps up another box.
 [4]: https://nmap.org/nsedoc/scripts/http-vuln-cve2017-5638.html "http-vuln-cve2017-5638 NSE Script"
 [5]: https://github.com/mazen160/struts-pwn "struts-pwn"
 
-    * [<sup>1</sup> Apache Struts vulnerability likely behind Equifax breach, Congress launches probes](https://www.scmagazine.com/apache-struts-vulnerability-likely-behind-equifax-breach-congress-launches-probes/article/687955/)
-    * [<sup>2</sup> CVE-2017-5638 Detail (National Vulnerability Database)](https://nvd.nist.gov/vuln/detail/CVE-2017-5638)
-    * [<sup>3</sup> CVE-2017-9805 Detail (National Vulnerability Database)](https://nvd.nist.gov/vuln/detail/CVE-2017-9805)
-    * [<sup>4</sup> http-vuln-cve2017-5638 NSE Script](https://nmap.org/nsedoc/scripts/http-vuln-cve2017-5638.html)
-    * [<sup>5</sup> struts-pwn](https://github.com/mazen160/struts-pwn)
+  * [<sup>1</sup> Apache Struts vulnerability likely behind Equifax breach, Congress launches probes](https://www.scmagazine.com/apache-struts-vulnerability-likely-behind-equifax-breach-congress-launches-probes/article/687955/)
+  * [<sup>2</sup> CVE-2017-5638 Detail (National Vulnerability Database)](https://nvd.nist.gov/vuln/detail/CVE-2017-5638)
+  * [<sup>3</sup> CVE-2017-9805 Detail (National Vulnerability Database)](https://nvd.nist.gov/vuln/detail/CVE-2017-9805)
+  * [<sup>4</sup> http-vuln-cve2017-5638 NSE Script](https://nmap.org/nsedoc/scripts/http-vuln-cve2017-5638.html)
+  * [<sup>5</sup> struts-pwn](https://github.com/mazen160/struts-pwn)
 
