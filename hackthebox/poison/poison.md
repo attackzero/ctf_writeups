@@ -124,3 +124,6 @@ Looks like we have a root shell!  We can cat out the flag, and the challenge is 
 ## References
 [1]: https://www.tightvnc.com/vncviewer.1.php "vncviewer man page"
 [2]: https://www.tightvnc.com/vncpasswd.1.php "vncpasswd man page"
+
+    * [<sup>1</sup> vncviewer man page](https://www.tightvnc.com/vncviewer.1.php)
+    * [<sup>2</sup> vncpasswd man page](https://www.tightvnc.com/vncpasswd.1.php)
