@@ -30,9 +30,11 @@ Nmap done: 1 IP address (1 host up) scanned in 12.50 seconds
 ```
 
 Before we look at the git repository, let's take a look at the site that is hosted:
+
 ![web site](screenshots/1_website.png)
 
 After poking around, there are no obvious vulnerabilities, so let's take a look at the git repository that nmap found for us:
+
 ![git repository](screenshots/2_.git_listing.PNG)
 
 To make it easier to work with, we will mirror it to our local box using wget:
