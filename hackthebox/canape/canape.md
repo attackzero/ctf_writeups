@@ -33,7 +33,9 @@ Before we look at the git repository, let's take a look at the site that is host
 
 ![web site](screenshots/1_website.png)
 
-After poking around, there are no obvious vulnerabilities, so let's take a look at the git repository that nmap found for us:
+After poking around, there are no obvious vulnerabilities.
+
+Let's take a look at the git repository that nmap found for us:
 
 ![git repository](screenshots/2_.git_listing.PNG)
 
