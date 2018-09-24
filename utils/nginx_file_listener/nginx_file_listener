@@ -23,6 +23,10 @@
 #
 # This will upload the file awesome_secrets to
 # /var/www/uploads/secretfiles/awesome_secrets on our box.
+#
+# For a Windows box, you can use Invoke-RestMethod:
+# Invoke-RestMethod -Uri http://<server_IP>:<port>/<path>/<file name> -Method Put -InFile <path to file>
+
 server {
     # Listen IPv4
     listen 8001 default_server;
