@@ -11,8 +11,8 @@ You will need an nginx server set up with the WebDAV module built in.  Kali Roll
 ```
 
 ## Installation
-1.  Create a directory to receive your uploads in and make sure the user running nginx has permission to write to this folder.  nginx runs as the ```www-data``` user on Kali.  Make sure line 40 of nginx_file_listener reflects the path you choose.
-2.  Modify lines 28 and 31 if you want to change the port that the server listens on (default is 8001).
+1.  Create a directory to receive your uploads in and make sure the user running nginx has permission to write to this folder.  nginx runs as the ```www-data``` user on Kali.  Make sure line 44 of nginx_file_listener reflects the path you choose.
+2.  Modify lines 32 and 35 if you want to change the port that the server listens on (default is 8001).
 3.  Copy nginx_file_listener to ```/etc/nginx/sites-available```.
 4.  Create a symlink to nginx_file_listener in /etc/nginx/sites-enabled.
     ```bash
