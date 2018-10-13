@@ -271,11 +271,11 @@ This was a really fun box because I got to learn about how XXE works and a bit m
 [7]: https://aws.amazon.com/macie/ "AWS Macie"
 [8]: https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet "XML External Entity (XXE) Prevention Cheat Sheet"
 
-    * [<sup>1</sup> Web Server Gateway Interface - Wikipedia](https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface)
-    * [<sup>2</sup> PEP 3333 -- Python Web Server Gateway Interface v1.0.1](https://www.python.org/dev/peps/pep-3333/)
-    * [<sup>3</sup> OWASP DirBuster Project](https://www.owasp.org/index.php/Category:OWASP_DirBuster_Project)
-    * [<sup>4</sup> XML External Entity (XXE) Processing](https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing)
-    * [<sup>5</sup> Top 10-2017 A4-XML External Entities (XXE)](https://www.owasp.org/index.php/Top_10-2017_A4-XML_External_Entities_(XXE))
-    * [<sup>6</sup> git-secrets](https://github.com/awslabs/git-secrets)
-    * [<sup>7</sup> AWS Macie](https://aws.amazon.com/macie/)
-    * [<sup>8</sup> XML External Entity (XXE) Prevention Cheat Sheet](https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet)
+  * [<sup>1</sup> Web Server Gateway Interface - Wikipedia](https://en.wikipedia.org/wiki/Web_Server_Gateway_Interface)
+  * [<sup>2</sup> PEP 3333 -- Python Web Server Gateway Interface v1.0.1](https://www.python.org/dev/peps/pep-3333/)
+  * [<sup>3</sup> OWASP DirBuster Project](https://www.owasp.org/index.php/Category:OWASP_DirBuster_Project)
+  * [<sup>4</sup> XML External Entity (XXE) Processing](https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Processing)
+  * [<sup>5</sup> Top 10-2017 A4-XML External Entities (XXE)](https://www.owasp.org/index.php/Top_10-2017_A4-XML_External_Entities_(XXE))
+  * [<sup>6</sup> git-secrets](https://github.com/awslabs/git-secrets)
+  * [<sup>7</sup> AWS Macie](https://aws.amazon.com/macie/)
+  * [<sup>8</sup> XML External Entity (XXE) Prevention Cheat Sheet](https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet)
