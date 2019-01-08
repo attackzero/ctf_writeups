@@ -403,7 +403,7 @@ monitor@waldo:~$ getcap -r / 2>&1 | grep -v "Failed"
 ```
 
 It looks like one more file on the filesystem has the ```DAC_READ_SEARCH``` capability.  I had never heard of ```tac``` before, but according to its man page<sup>[5]</sup>, it appears to be cat but in reverse (hence the name).  It allows us to concatenate and print files in reverse.  Right now, we are only interested in one file: the root flag.  Let's see if we can read it:
-![root flag](screenshots/13_root_flag.PNG)
+![root flag](screenshots/13_root_flag.png)
 
 We got it!
 
