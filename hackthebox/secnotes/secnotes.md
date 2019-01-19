@@ -190,7 +190,7 @@ After a bit of enumeration, we can find the user flag on tyler's desktop:
 
 ## Root Flag
 The first step is to do some basic enumeration in the user's directory.  On his Desktop we also find ```bash.lnk```:
-![bash.lnk](screenshots/14_bash_lnk.png)
+![bash.lnk](screenshots/14_bash.lnk.png)
 
 It looks like the Windows Subsystem for Linux may be installed.  When we look for ```bash.exe``` in ```C:\Windows\System32\bash.exe```, we find it is not there.  However, if we look in ```C:\Windows\sysnative```, we can find it:
 ![found bash](screenshots/15_finding_bash.png)
@@ -223,8 +223,16 @@ After a little enumeration in the Administrator's user directory, we find the ro
 
 
 # References
+
 [1]: https://www.owasp.org/index.php/Testing_for_SQL_Injection_(OTG-INPVAL-005) "Testing for SQL Injection (OTG-INPVAL-005)"
 [2]: https://en.wikipedia.org/wiki/Bcrypt "Bcrypt - Wikipedia"
 [3]: https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=HackTool:Win32/NetCat "HackTool:Win32/Netcat"
 [4]: https://github.com/infoskirmish/Window-Tools/tree/master/Simple%20Reverse%20Shell "Simple Reverse Shell"
 [5]: https://docs.microsoft.com/en-us/windows/wsl/user-support "Linux User Account and Permissions | Microsoft Docs"
+
+  * [<sup>1</sup> Testing for SQL Injection (OTG-INPVAL-005)](https://www.owasp.org/index.php/Testing_for_SQL_Injection_(OTG-INPVAL-005))
+  * [<sup>2</sup> Bcrypt - Wikipedia](https://en.wikipedia.org/wiki/Bcrypt)
+  * [<sup>3</sup> HackTool:Win32/Netcat](https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=HackTool:Win32/NetCat)
+  * [<sup>4</sup> Simple Reverse Shell](https://github.com/infoskirmish/Window-Tools/tree/master/Simple%20Reverse%20Shell)
+  * [<sup>5</sup> Linux User Account and Permissions | Microsoft Docs](https://docs.microsoft.com/en-us/windows/wsl/user-support)
+
