@@ -383,6 +383,7 @@ The syntax we will use for ```masscan``` is as follows:
 masscan -p 1-1024 -pU:161 --rate 10000 <subnet>
 
 ```
+```
 Starting masscan 1.0.6 (http://bit.ly/14GZzcT) at 2018-10-13 23:11:18 GMT
  -- forced options: -sS -Pn -n --randomize-hosts -v --send-eth
 Initiating SYN Stealth Scan
