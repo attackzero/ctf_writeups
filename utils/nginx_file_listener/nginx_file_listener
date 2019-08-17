@@ -43,6 +43,9 @@ server {
         # we have to chown www-data:www-data /var/www/uploads
         root /var/www/uploads;
 
+	# Allow large file uploads
+	client_max_body_size 100M;
+
         # Allow PUTing of files
         dav_methods PUT;
 
