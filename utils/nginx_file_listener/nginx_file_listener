@@ -52,6 +52,9 @@ server {
         # Allow intermediate directories to be created.
         create_full_put_path on;
 
+        # Allow all users on the machine to read uploaded files
+        dav_access all:r;
+
         # You can limit IP ranges allowed to PUT using the following stanza:
         # limit_except PUT {
         #     allow <IP range>;
